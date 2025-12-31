@@ -1,0 +1,68 @@
+/* app.css */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+:root {
+  --brand-green: #008F39;
+  --brand-green-hover: #00752e;
+  --brand-light-green: #e6f4ea;
+  --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+body {
+  background-color: #f0f7f2;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  color: #333;
+  padding-bottom: 70px; /* Space for fixed footer */
+  scroll-behavior: smooth;
+}
+
+/* Bubbly Buttons & Inputs */
+.btn-primary, .bmac-button {
+  background-color: var(--brand-green) !important;
+  border: none !important;
+  border-radius: 50px !important;
+  padding: 10px 25px !important;
+  transition: var(--transition-smooth) !important;
+  box-shadow: 0 4px 15px rgba(0, 143, 57, 0.2);
+  font-weight: 600;
+}
+
+.btn-primary:hover, .bmac-button:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 6px 20px rgba(0, 143, 57, 0.3);
+  background-color: var(--brand-green-hover) !important;
+}
+
+.form-control, .form-select {
+  border-radius: 15px !important;
+  border: 2px solid transparent !important;
+  padding: 12px 20px !important;
+  transition: var(--transition-smooth);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--brand-green) !important;
+  box-shadow: 0 0 0 0.25rem rgba(0, 143, 57, 0.1) !important;
+}
+
+/* Glassmorphism for Nav */
+.custom-navbar {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 143, 57, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1050;
+  padding: 0.8rem 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+section {
+  animation: fadeIn 0.6s ease-out forwards;
+}
