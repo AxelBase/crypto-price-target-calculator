@@ -3,8 +3,6 @@
   import { base } from '$app/paths';
   import { fly } from 'svelte/transition';
 
-  const paypalUsername = 'AxelLab427'; 
-  const donationAmounts = [1, 3, 5, 10];
   const currentYear = new Date().getFullYear();
   
   let isDropdownOpen = false;
@@ -26,33 +24,59 @@
 </script>
 
 <header class="custom-navbar shadow-sm">
-  <nav class="container d-flex justify-content-between align-items-center">
-    <div class="d-flex align-items-center gap-3">
+  <nav class="container d-flex justify-content-between align-items-center py-2">
+    <div class="d-flex align-items-center gap-4">
       <a href="{base}/" class="d-flex align-items-center text-decoration-none">
-        <img src="{base}/AxelLab-Logo.ico" alt="Logo" style="height: 38px;" class="me-2" />
-        <span class="fw-bold fs-4" style="color: var(--brand-green); font-family: 'Poppins';">AxelBase</span>
+        <img src="{base}/AxelLab-Logo.ico" alt="Logo" style="height: 40px;" class="me-3" />
+        <span class="fw-bold fs-3" style="color: var(--brand-green); font-family: 'Poppins', sans-serif;">AxelBase</span>
       </a>
 
       <div class="position-relative" use:clickOutside on:click_outside={closeDropdown}>
-        <button class="bmac-button d-flex align-items-center gap-2 text-white border-0" on:click={toggleDropdown}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2,21V19H20V21H2M20,8V5H4V8H20M20,10H4V13C4,14.38 4.5,15.63 5.31,16.58L11.64,19H12.36L18.69,16.58C19.5,15.63 20,14.38 20,13V10M16,2H8V4H16V2Z" /></svg>
-          <span class="d-none d-md-inline small">Buy me a coffee</span>
+        <button 
+          class="bmac-button d-flex align-items-center gap-2 text-white border-0 px-4 py-2 rounded-pill shadow-sm"
+          on:click={toggleDropdown}
+          aria-label="Support options"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M2,21V19H20V21H2M20,8V5H4V8H20M20,10H4V13C4,14.38 4.5,15.63 5.31,16.58L11.64,19H12.36L18.69,16.58C19.5,15.63 20,14.38 20,13V10M16,2H8V4H16V2Z" />
+          </svg>
+          <span class="d-none d-sm-inline fw-semibold">Buy me a Coffee</span>
+          <span class="d-sm-none fw-semibold">Coffee</span>
         </button>
 
         {#if isDropdownOpen}
-          <div class="bmac-dropdown" transition:fly={{ y: 8, duration: 200 }}>
-            {#each donationAmounts as amount}
-              <a href="https://paypal.me/{paypalUsername}/{amount}" target="_blank" rel="noopener" on:click={closeDropdown}>${amount}</a>
-            {/each}
+          <div class="bmac-dropdown mt-2" transition:fly={{ y: -10, duration: 250 }}>
+            <a href="https://buymeacoffee.com/axelbase" target="_blank" rel="noopener" on:click={closeDropdown}>
+              <span class="amount">$3</span> One Coffee
+            </a>
+            <a href="https://buymeacoffee.com/axelbase" target="_blank" rel="noopener" on:click={closeDropdown}>
+              <span class="amount">$5</span> Two Coffees
+            </a>
+            <a href="https://buymeacoffee.com/axelbase" target="_blank" rel="noopener" on:click={closeDropdown}>
+              <span class="amount">$10</span> Three Coffees
+            </a>
+
+            <a href="https://buymeacoffee.com/axelbase" target="_blank" rel="noopener" on:click={closeDropdown} class="custom-amount">
+              Custom Amount
+            </a>
+
+            <a
+              href="bitcoin:bc1q3p0e6vt492m4w4fpz5m2cl4zcfuqqkgaj6myc9?label=AxelBase&message=Buy%20me%20a%20coffee"
+              on:click={closeDropdown}
+              class="custom-amount"
+            >
+              Buy via Crypto (Bitcoin)
+            </a>
+
           </div>
         {/if}
       </div>
     </div>
 
-    <ul class="d-none d-lg-flex align-items-center gap-4 m-0 list-unstyled">
+    <ul class="d-none d-lg-flex align-items-center gap-5 m-0 list-unstyled">
       <li><a class="nav-link-custom" href="{base}/">Home</a></li>
       <li><a class="nav-link-custom" href="{base}/#about">About</a></li>
-      <li><a class="nav-link-custom" href="{base}/#how-to-use">How to use</a></li>
+      <li><a class="nav-link-custom" href="{base}/#how-to-use">How to Use</a></li>
       <li><a class="nav-link-custom" href="{base}/#faq">FAQ</a></li>
       <li><a class="nav-link-custom" href="{base}/blog">Blog</a></li>
     </ul>
@@ -61,44 +85,83 @@
 
 <slot />
 
-<footer class="releative py-3 border-top shadow-sm">
-  <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
-    <p class="m-0 text-muted small">© {currentYear} AxelBase Crypto Price Target Calculator</p>
-    <div class="d-flex gap-3">
-      <a href="{base}/privacy" class="text-decoration-none text-muted small hover-green">Privacy</a>
-      <a href="{base}/terms" class="text-decoration-none text-muted small hover-green">Terms</a>
+<footer class="py-4 border-top mt-5">
+  <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center text-muted small">
+    <p class="m-0">© {currentYear} AxelBase Crypto Price Target Calculator</p>
+    <div class="d-flex gap-4 mt-3 mt-md-0">
+      <a href="{base}/privacy" class="text-decoration-none hover-green">Privacy Policy</a>
+      <a href="{base}/terms" class="text-decoration-none hover-green">Terms & Conditions</a>
     </div>
   </div>
 </footer>
 
 <style>
   .nav-link-custom {
-    text-decoration: none;
     color: #444;
     font-weight: 600;
-    font-size: 0.95rem;
-    transition: var(--transition-smooth);
+    font-size: 1rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
   }
-  .nav-link-custom:hover { color: var(--brand-green); }
+  .nav-link-custom:hover {
+    color: var(--brand-green);
+  }
+
+  .bmac-button {
+    background: var(--brand-green);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+  }
+  .bmac-button:hover {
+    background: var(--brand-green-hover);
+    transform: translateY(-1px);
+  }
+
   .bmac-dropdown {
     position: absolute;
-    top: 110%;
-    left: 0;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 240px;
     background: white;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    min-width: 100px;
-    z-index: 1000;
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(0, 143, 57, 0.15);
     overflow: hidden;
-    border: 1px solid #eee;
+    border: 1px solid rgba(0, 143, 57, 0.1);
+    z-index: 1000;
   }
+
   .bmac-dropdown a {
-    display: block;
-    padding: 8px 15px;
-    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
     color: #333;
-    font-size: 0.9rem;
+    text-decoration: none;
+    font-size: 0.98rem;
+    transition: all 0.2s ease;
   }
-  .bmac-dropdown a:hover { background: var(--brand-light-green); color: var(--brand-green); }
-  .hover-green:hover { color: var(--brand-green) !important; }
+
+  .bmac-dropdown a:hover {
+    background: var(--brand-light-green);
+    color: var(--brand-green);
+    padding-left: 28px;
+  }
+
+  .bmac-dropdown .amount {
+    font-weight: 700;
+    color: var(--brand-green);
+    font-size: 1.1rem;
+  }
+
+  .bmac-dropdown .custom-amount {
+    font-weight: 600;
+    color: var(--brand-green);
+    border-top: 1px solid #eee;
+    justify-content: center !important;
+  }
+
+  .hover-green:hover {
+    color: var(--brand-green) !important;
+  }
 </style>
