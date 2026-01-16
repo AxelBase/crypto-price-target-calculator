@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://axelbase.github.io/crypto-price-target-calculator/sitemap.xml
+Sitemap: https://crypto-price-target-calculator.vercel.app/sitemap.xml

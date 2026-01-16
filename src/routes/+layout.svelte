@@ -4,9 +4,9 @@
   import { fly } from 'svelte/transition';
 
   const currentYear = new Date().getFullYear();
-  
+
   let isDropdownOpen = false;
-  
+
   function toggleDropdown() { isDropdownOpen = !isDropdownOpen; }
   function closeDropdown() { isDropdownOpen = false; }
 
@@ -32,7 +32,7 @@
       </a>
 
       <div class="position-relative" use:clickOutside on:click_outside={closeDropdown}>
-        <button 
+        <button
           class="bmac-button d-flex align-items-center gap-2 text-white border-0 px-4 py-2 rounded-pill shadow-sm"
           on:click={toggleDropdown}
           aria-label="Support options"
@@ -67,7 +67,6 @@
             >
               Buy via Crypto (Bitcoin)
             </a>
-
           </div>
         {/if}
       </div>
