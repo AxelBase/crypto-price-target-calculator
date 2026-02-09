@@ -1,3 +1,4 @@
+<!-- src/routes/blog/+page.svelte -->
 <script lang="ts">
   import { base } from '$app/paths';
 
@@ -42,17 +43,33 @@
 
 <svelte:head>
   <title>Blog | Crypto Price Target Insights</title>
-  <meta name="description" content="In-depth articles on using the Crypto Price Target Calculator: required moves, volatility adjustments, risk scaling, and real-time data integration." />
+  <meta
+    name="description"
+    content="In-depth articles on using the Crypto Price Target Calculator: required moves, volatility adjustments, risk scaling, real-time data integration, and practical trading insights."
+  />
 </svelte:head>
 
 <div class="container fade-in blog-index">
   <header class="blog-header">
     <h1><i class="bi bi-graph-up-arrow"></i> Blog: Crypto Price Target Insights</h1>
     <p class="subtitle">
-      Technical guides, explanations, and tips for getting the most out of the Crypto Price Target Calculator. 
-      Topics cover calculation mechanics, volatility integration, risk adjustments, API data flow, and visualization features.
+      Technical guides, explanations, and tips for getting the most out of the Crypto Price Target Calculator.
+      Topics cover calculation mechanics, volatility integration, risk adjustments, API data flow, visualization features, and trading strategies.
     </p>
   </header>
+
+  <!-- Added Alternatives Page Link Section -->
+  <div class="alternatives-section mb-5 text-center">
+    <p class="lead mb-3">
+      Not sure which price target tool is right for you?
+    </p>
+    <p class="text-muted mb-4">
+      Compare popular crypto price prediction and target calculators (including live platforms like CoinGecko, CoinMarketCap, Binance, and this client-side tool).
+    </p>
+    <a href="{base}/alternatives" class="btn btn-primary btn-lg bubbly">
+      View Alternatives & Comparison → 
+    </a>
+  </div>
 
   <div class="posts-grid">
     {#each posts as post}
@@ -60,7 +77,7 @@
         <div class="card-body">
           <h2 class="post-title">{post.title}</h2>
           <p class="post-description">{post.description}</p>
-          <span class="read-more">Read Article &rarr;</span>
+          <span class="read-more">Read Article →</span>
         </div>
       </a>
     {/each}
@@ -92,6 +109,19 @@
     max-width: 800px;
     margin: 0 auto;
     line-height: 1.7;
+  }
+
+  .alternatives-section {
+    background: var(--brand-light-green, #e6f4ea);
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 3rem;
+  }
+
+  .alternatives-section .lead {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #333;
   }
 
   .posts-grid {
@@ -138,5 +168,22 @@
 
   .post-card:hover .read-more {
     transform: translateX(8px);
+  }
+
+  /* Ensure button matches the bubbly style from app.css */
+  .btn.bubbly {
+    background-color: var(--brand-green) !important;
+    border: none !important;
+    border-radius: 50px !important;
+    padding: 14px 32px !important;
+    box-shadow: 0 4px 15px rgba(0, 143, 57, 0.2) !important;
+    font-weight: 600 !important;
+    transition: var(--transition-smooth) !important;
+  }
+
+  .btn.bubbly:hover {
+    transform: translateY(-3px) scale(1.03) !important;
+    box-shadow: 0 6px 20px rgba(0, 143, 57, 0.3) !important;
+    background-color: var(--brand-green-hover, #00752e) !important;
   }
 </style>
